@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas旋转动画</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			html,body{background-color: #ddd;}
+			canvas{position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var d = document;
+			var canvas = d.body.appendChild(d.createElement('canvas'));
+			var context = canvas.getContext('2d');
+			var time = 0;
+			 
+			var  w = canvas.width = innerWidth/2;
+			var  h = canvas.height = innerHeight/2;
+			var  m = Math;
+			var  cos = m.cos;
+			var  sin = m.sin;
+			var  PI = m.PI;
+			var  r;
+			
+			setInterval(function() {
+			
+			canvas.width = canvas.width
+			
+			//总体旋转速度,数值越大越快
+			time += .15	
+			
+			
+			i =10000
+			
+			while (i--) {
+																		//粒子旋转速度~数值越小越快
+			  r = (w + h) / 2 * (m.cos((time + i) * (.05 + (m.sin(time / 50000) / PI * .2))) / PI)
+			  if(i<3333){
+			      context.fillStyle = 'green' 
+			  }else if(i<6666){
+			      context.fillStyle = 'red' 
+			  }else{
+			      context.fillStyle = 'black'
+			  }
+			
+			  context.fillRect(m.sin(i)*r + w / 2,
+			          m.cos(i) * r + h / 2,
+			    1.5,
+			    1.5)
+			}
+			}, 16);//帧率，数值越大帧率越少
+			
+			var a="aa";
+			a=a- -1
+		</script>
+	</body>
+</html>

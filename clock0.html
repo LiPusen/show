@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>时钟</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js"></script>
+		<style type="text/css">
+			* { margin: 0; padding: 0; }
+            canvas { display: block; }
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			class Texture {
+			  constructor (size) {
+			    this.size = size
+			    this.points = []
+			    this.pixelPositions = []
+			    this.canvas = null
+			    this.ctx = null
+			    this.tempCanvas = null
+			    this.tempCtx = null
+			  }
+			  init () {
+			    this.canvas = document.createElement('canvas')
+			    this.ctx = this.canvas.getContext('2d')
+			    this.tempCanvas = document.createElement('canvas')
+			    this.tempCtx = this.tempCanvas.getContext('2d')
+			    this.canvas.width  = this.tempCanvas.width =  this.size.width
+			    this.canvas.height = this.tempCanvas.height = this.size.height
+			
+			    // document.body.appendChild(this.canvas)
+			 //   document.body.appendChild(this.tempCanvas)
+			
+			    this.getPositions(this.updateTime())
+			    setInterval(() => {
+			      this.getPositions(this.updateTime())
+			    }, 1000)
+			
+			    return this
+			  }
+			  updateTime () {
+			    let date = new Date()
+			    let hours = date.getHours()
+			    let minutes = date.getMinutes()
+			    let seconds = date.getSeconds()
+			
+			    if (hours.toString().length === 1) hours = '0' + hours
+			    if (minutes.toString().length === 1) minutes = '0' + minutes
+			    if (seconds.toString().length === 1) seconds = '0' + seconds
+			
+			    return `${hours}:${minutes}:${seconds}`
+			  }
+			  getPositions (timeString) {
+			    this.pixelPositions = []
+			    this.tempCtx.clearRect(0, 0, width, height)
+			    this.tempCtx.fillStyle = '#111'
+			    this.tempCtx.font = '120px Arial'
+			    this.tempCtx.fillText(timeString, this.tempCanvas.width / 2 - this.tempCtx.measureText(timeString).width / 2, this.tempCanvas.height / 2 + 30)
+			
+			    let imgData = this.tempCtx.getImageData(0, 0, this.tempCanvas.width, this.tempCanvas.height)
+			    let buffer = new Uint32Array(imgData.data.buffer)
+			    let grid = 5
+			    for (let y = 0; y <= this.tempCanvas.height; y += grid) {
+			      for (let x = 0; x <= this.tempCanvas.width; x += grid) {
+			        if (buffer[y * this.tempCanvas.width + x]) {
+			          this.pixelPositions.push({ x, y })
+			        }
+			      }
+			    }
+			    if (this.points.length === 0) {
+			      for (let i = 0; i < this.pixelPositions.length + 50; i += 1) {
+			        if (this.pixelPositions[i]) {
+			          let { x, y } = this.pixelPositions[i]
+			          this.points.push({ x, y, angle: Math.random() * 360, offset: Math.random() })
+			        } else {
+			          this.points.push({ x: this.tempCanvas.height / 2, y: this.tempCanvas.width / 2, angle: Math.random() * 360, offset: Math.random() })
+			        }
+			
+			      }
+			    }
+			  }
+			  updatePoint(p, i) {
+			    let gradient = this.ctx.createRadialGradient(p.x, p.y, 10, p.x, p.y, 0, 0)
+			    gradient.addColorStop(0, 'transparent');
+			    gradient.addColorStop(1, '#000');
+			    this.ctx.save()
+			    this.ctx.fillStyle = gradient
+			    this.ctx.beginPath()
+			    this.ctx.arc(p.x, p.y, 20, 0, Math.PI * 2, true)
+			    this.ctx.fill()
+			    this.ctx.restore()
+			
+			    let pixelPos = this.pixelPositions[i]
+			    if (pixelPos) {
+			      let dx = pixelPos.x - p.x
+			      let dy = pixelPos.y - p.y
+			      p.x += dx * 0.25
+			      p.y += dy * 0.25
+			    } else {
+			      p.x += Math.sin(p.angle * p.offset) * 7
+			      p.y += Math.cos(p.angle * p.offset) * 7
+			      p.angle += 0.1
+			    }
+			  }
+			  renderFrame () {
+			    this.ctx.fillStyle = '#fff'
+			    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+			    this.points.forEach(this.updatePoint.bind(this))
+			  }
+			}
+			
+			class ShaderPlane {
+			  constructor () {
+			    this.vertShader = `
+			uniform float delta;
+			uniform sampler2D texture;
+			
+			varying vec4 vPos;
+			varying vec2 vUv;
+			
+			void main () {
+			vUv = uv;
+			vec4 sampler = texture2D(texture, uv);
+			
+			float x = position.x;
+			float y = position.y;
+			float z = position.z + sampler.r * -5.0;
+			
+			vec4 newPosition = vec4(x, y, z, 1.0);
+			vec4 modelViewPosition = modelViewMatrix * newPosition;
+			vPos = projectionMatrix * modelViewPosition;
+			gl_Position = vPos;
+			}
+			`
+			    this.fragShader = `
+			uniform float delta;
+			uniform sampler2D texture;
+			
+			varying vec4 vPos;
+			varying vec2 vUv;
+			
+			void main() { 
+			float r = 0.0;
+			float g = sin(delta / 1000.0 + cos(vPos.x) * 5.0 + sin(vPos.y) * 2.0) * 2.0 - 1.5; 
+			float b = sin(delta / 1000.0 + cos(vPos.x) * 5.0 + sin(vPos.y) * 2.0) * 2.0 - 1.5;
+			vec4 overlayColor = vec4(r, g, b, 1.0);
+			vec4 texColor = texture2D(texture, vUv);
+			texColor.g = 1.0;
+			texColor.b = 1.0;
+			float alpha = texColor.r;
+			gl_FragColor = mix(texColor, overlayColor, alpha);
+			}
+			`
+			    this.mesh = null
+			  }
+			  init (scene, canvas) {
+			    this.mesh = new THREE.Mesh(
+			      new THREE.PlaneBufferGeometry(50, 50, 100, 100),
+			      new THREE.ShaderMaterial({
+			        uniforms: {
+			          delta: { type: 'f', value: 0.0 },
+			          texture: { type: 't', value: new THREE.Texture(canvas) }
+			        },
+			        vertexShader:   this.vertShader, 
+			        fragmentShader: this.fragShader
+			      })
+			    )
+			    this.mesh.rotation.x -= 46
+			    this.mesh.position.set(0, 0, 0)
+			    scene.add(this.mesh)
+			    return this
+			  }
+			  renderFrame (timeElapsed) {
+			    this.mesh.material.uniforms.delta.value = timeElapsed;
+			    this.mesh.material.uniforms.texture.value.needsUpdate = true;
+			  }
+			}
+			
+			let width = window.innerWidth
+			let height = window.innerHeight
+			
+			const scene = new THREE.Scene()
+			const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000)
+			const renderer = new THREE.WebGLRenderer()
+			
+			const texture = new Texture({
+			  width: 512, height: 512
+			}).init()
+			const shaderPlane = new ShaderPlane().init(scene, texture.canvas)
+			
+			const renderFrame = (ts) => {
+			  window.requestAnimationFrame(renderFrame)
+			  renderer.render(scene, camera)
+			
+			  texture.renderFrame()
+			  shaderPlane.renderFrame(ts)
+			}
+			
+			const init = () => {
+			  camera.position.set(0, 100, 0)
+			  camera.lookAt(new THREE.Vector3(0, 0, 0))
+			  renderer.setSize(width, height)
+			  renderer.setClearColor(0x111111)
+			  document.body.appendChild(renderer.domElement)
+			
+			  renderFrame()
+			}
+			
+			init()
+		</script>
+	</body>
+</html>
