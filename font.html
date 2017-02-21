@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>离子字</title>
+		<title>告白</title>
 		<style type="text/css">
 			html,body {
 				padding:0;
@@ -24,9 +24,8 @@
 	            function(cb) {
 	                return setTimeout(cb, 40)
 	            };
-	            var Teamkill = window.Teamkill = function(text) {
+	            var Teamkill = window.Teamkill = function(text,fontSize) {
 	                var font = '"Helvetica Neue","Microsoft YaHei UI Light",sans-serif';
-	                var fontSize = 100;
 	                var compositionAtop = 'source-atop';
 	                var compositionNormal = 'source-over';
 	                var canvas = document.getElementById('canvas');
@@ -276,7 +275,7 @@
 	            };
 	            
 	        } (window);
-	        var tk = new Teamkill("I Love You,Ma Kai Li");
+	        var tk = new Teamkill("我爱你，不言语，不忘记  I love you. not words. don't foregt.",35);
 	            tk.run();
 		</script>
 	</body>
