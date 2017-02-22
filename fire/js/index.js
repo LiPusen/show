@@ -12,9 +12,9 @@ $(function(){
     }
     var time = 0;
     //设置画板大小
-    var cw = 320 , ch = 480;
-    $(".wrapper").css({width:cw,height:ch});
-    $("#surface").css({width:cw,height:ch});
+    //var cw = 320 , ch = 480;
+    //$(".wrapper").css({width:cw,height:ch});
+    //$("#surface").css({width:cw,height:ch});
     
     //兼容动画方法
     window.requestAnimFrame = (function(){
