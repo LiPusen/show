@@ -1,0 +1,150 @@
+*{
+	padding:0;
+	margin:0 auto;
+	box-sizing: border-box;
+}
+body{
+	font-size:0.15rem;
+	color:#41454d;
+}
+.banner{
+	width:100%;
+	overflow: hidden;
+}
+.banner img{
+	width:100%;
+}
+.content{
+	width: 100%;
+	overflow:hidden;
+}
+.content ul{
+	overflow:hidden;
+	padding:16px;
+}
+.content ul>li{
+	overflow:hidden;
+	margin-bottom:15px;
+}
+.con_left{
+	float:left;
+	width:18%;
+	overflow:hidden;
+}
+.con_left span{
+	display:block;
+	width:0.5rem;
+	height:0.5rem;
+}
+.con_left span img{
+	display:block;
+	width:100%;
+	height:100%;
+}
+.con_right{
+	float:right;
+	width:78%;
+	padding-left:8px;
+	overflow:hidden;
+}
+.con_right h4{
+	display:block;
+	font-size:0.18rem;
+	font-weight: bold;
+}
+.con_right p{
+	display:block;
+	margin-top:8px;
+	line-height:0.2rem;
+}
+.con_box{
+	width:100%;
+	overflow:hidden;
+}
+.con_box span{
+	float:left;
+	overflow:hidden;
+}
+.con_box span.one{
+	width:100%;
+	height:1rem;
+}
+.con_box span.three{
+	width:50%;
+	height:0.8rem;
+	padding:5px;
+}
+.con_box span.seve{
+	width:33%;
+	height:0.5rem;
+	padding:2px;
+}
+.con_box span img{
+	width:100%;
+	height:100%;
+}
+.operation{
+	display:block;
+	overflow:hidden;
+	margin-top:12px;
+}
+.operation span,.operation em{
+	float:left;
+	width:80px;
+	color:#89858c;
+	padding-left:30px;
+}
+.operation span{
+	background: url('../img/heart.png') no-repeat left center;
+}
+.operation span.zan{
+	background:url('../img/heart_24px.png') no-repeat left center;
+}
+.operation em{
+	margin-left:15px;
+	background:url('../img/comments.png') no-repeat left center;
+}
+.operation b{
+	float:left;
+	width:100%;
+	margin-top:12px;
+	font-size:0.1rem;
+	color:#acb1b7;
+}
+.comments{
+	overflow:hidden;
+	width:100%;
+}
+.comments li{
+	display:block;
+	width:100%;
+	overflow:hidden;
+}
+.comments li p{
+	overflow:hidden;
+	color:#41454D;
+}
+.comments li p i{
+	float:left;
+	color:#5bafff;
+}
+.text_con{
+	overflow:hidden;
+	display:block;
+	font-size:0.1rem;
+	margin-top:5px;
+	cursor: pointer;
+}
+.text_con span{
+	float:left;
+}
+.text_con em{
+	float:left;
+	width:15px;
+	height:15px;
+	margin-left:5px;
+	background: url('../img/disc.png') no-repeat -2px -11px;
+}
+.text_con em.up{
+	background: url('../img/disc.png') no-repeat -2px 3px;
+}

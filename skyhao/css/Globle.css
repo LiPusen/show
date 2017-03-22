@@ -1,0 +1,354 @@
+@charset "utf-8";
+/* CSS Document */
+/*
+ * 榴莲科技 CSS Library 2.0.0
+ * Copyright(c)  2014, 榴莲科技 CSS
+ * @url http://www.durian.com
+ * @desc 部分CSS样式使用CSS3
+ * 2014-5-21
+ */
+
+/*
+ * 将具有默认 html 取消浏览器字号限制
+ * @overlay *
+ * @desc 在手持设备或webkit中不会解析12px以下字体
+ */
+html {
+	-ms-text-size-adjust: 100%; 
+    -webkit-text-size-adjust: 100%; 
+	SCROLLBAR-FACE-COLOR: #f0f0f0;
+	SCROLLBAR-HIGHLIGHT-COLOR: #f5f5f5;
+	SCROLLBAR-SHADOW-COLOR: #8b8c8c;
+	SCROLLBAR-3DLIGHT-COLOR: #fff;
+	SCROLLBAR-ARROW-COLOR: #240024;
+	SCROLLBAR-TRACK-COLOR: #fcfcfc;
+	SCROLLBAR-DARKSHADOW-COLOR: #ccc;
+	SCROLLBAR-BASE-COLOR: #f4f4f4;
+}
+/*
+ *	SCROLLBAR-FACE-COLOR: 滚动条凸出部分的颜色 
+ *	SCROLLBAR-HIGHLIGHT-COLOR: 滚动条空白部分的颜色 
+ *	SCROLLBAR-SHADOW-COLOR: 立体滚动条阴影的颜色 
+ *	SCROLLBAR-3DLIGHT-COLOR: 滚动条亮边的颜色 
+ *	SCROLLBAR-ARROW-COLOR: 上下按钮上三角箭头的颜色 
+ *	SCROLLBAR-TRACK-COLOR: 滚动条的背景颜色 
+ *	SCROLLBAR-DARKSHADOW-COLOR: 滚动条强阴影的颜色 
+ *	SCROLLBAR-BASE-COLOR: 滚动条的基本颜色 
+ */
+
+/*
+ * 修正IE5.x和IE6的斜体溢出bug 及 震动
+ * @bugfix
+ * @css-for    IE 5.x/Win, IE6
+ * @desc IE6 背景图片震动
+ */
+* html body{
+	overflow: visible;
+	background-image:url(about:blank);
+	background-attachment:fixed;
+}
+* html iframe, * html frame{
+	overflow: auto;
+}
+* html frameset{
+	overflow: hidden;
+}
+iframe {
+	width:100%;
+	height:100%;
+}
+
+/* @Global 常用标签_@Start */
+
+/*
+ * 基本标签默认样式取消
+ * @overlay HTML标签
+ * @desc 取消基本标签默认样式,防止不同浏览器显示效果不同
+ * @Prop text-align:center; 解决不同浏览器剧中问题
+ */
+body,div,span,dl,dd,h1,h2,h3,h4,h5,h6,p,form,ul,ol,input{
+	margin:0 auto;
+	padding:0;
+}
+body{
+	color:#333;
+	background: #f3f3f3;
+    font-family: arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;
+    font-size: 100%;
+    min-width: 320px
+	/*text-shadow: 0 1px rgba(6, 29, 47, 0.9);*/
+}
+/*
+ *	SCROLLBAR-FACE-COLOR: 滚动条凸出部分的颜色 
+ *	SCROLLBAR-HIGHLIGHT-COLOR: 滚动条空白部分的颜色 
+ *	SCROLLBAR-SHADOW-COLOR: 立体滚动条阴影的颜色 
+ *	SCROLLBAR-3DLIGHT-COLOR: 滚动条亮边的颜色 
+ *	SCROLLBAR-ARROW-COLOR: 上下按钮上三角箭头的颜色 
+ *	SCROLLBAR-TRACK-COLOR: 滚动条的背景颜色 
+ *	SCROLLBAR-DARKSHADOW-COLOR: 滚动条强阴影的颜色 
+ *	SCROLLBAR-BASE-COLOR: 滚动条的基本颜色 
+ */
+
+/*
+ * 标签属性
+ * @overlay select
+ * @desc 默认设置select效果
+ */
+select{
+	font-size:1em;
+	outline:none;
+	color:#333;
+	background:#fff;
+	box-shadow:none;
+}
+/*
+ * 标签属性
+ * @overlay textarea
+ * @desc 默认设置textarea效果
+ */
+textarea{
+	word-wrap:break-word;
+	word-break:break-all;
+	overflow:auto;
+	border:none;
+	color:#333;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+}
+/*
+ * 标签属性
+ * @overlay input
+ * @desc 默认设置input效果
+ */
+input{
+	font-size:14px;
+	word-wrap:break-word;
+	word-break:break-all;
+    color: #333;
+    border:1px solid #e2e2e2;
+	outline:none;
+    box-sizing: content-box;
+}
+/*
+ * 标签属性
+ * @overlay input
+ * @desc 去掉IE10文本框上的清除按钮
+ */
+input::-ms-clear{display:none;}
+
+/*
+ * 标签属性
+ * @overlay table td th
+ * @desc 强制输入时内容超出时换行
+ */
+table {
+	width:100%;
+	border-collapse:collapse;
+}
+td,th{font-size:12px;}
+
+/*
+ * 清除列表标记的样式
+ * @overlay  ul,ol,li
+ * @desc ul,ol,li列表更多的用在不需要列表前置符号的样式里
+ */
+ul,ol{list-style-type:none;}
+/*
+ * 定义图片边框
+ * @overlay img
+ * @desc 去除边框及图片底产无缘无故多出3px
+ */
+img{
+	border:none;
+	vertical-align: top;
+	-ms-interpolation-mode: bicubic;
+}	
+/*
+ * 定义默认的链接样式
+ * @overlay a
+ * @desc	仅仅是作为默认样式提供，可以在各自的实例中覆盖掉
+ */
+a {
+	color: #666;
+	text-decoration:none;
+	outline: none;
+}
+a:hover{
+	text-decoration:none;
+}
+a:active,a:focus {
+	outline: none;
+}
+/* 去掉链接的虚线框*/
+
+/*
+ * 定义H系列标签
+ * @overlay HN
+ * @desc  覆盖H系列标签默认属性
+ */
+h1,h2,h3,h4,h5,h6{
+	font-weight:normal;
+}
+/*
+ * 定义其他标签
+ * @overlay em,i,b,strong
+ * @desc
+ */
+dfn,em,i,b {
+	font-style:normal;
+	font-weight:normal;
+}
+.line {
+	display: block;
+	width: 100%;
+	font-size: 0;
+	height: 0px;
+	line-height: 0px;
+	border-top: 1px solid #DDDDDD;
+	border-bottom: 1px solid #FFFFFF;
+}
+/* @Global 常用标签_@end */
+
+
+/* @group 通用属性定义_@Start */
+
+/*  鼠标样式 */
+.pointer{cursor:pointer;}
+/* 取消边框 */
+.NoBorder{border:none;}
+/*  文本对齐方式  */
+.textLeft{text-align:left;}
+.textCenter{text-align:center;}
+.textRight{text-align:right;}
+
+/*
+ * 字母和单词换行设置
+ * @class Break 强制内容换行
+ * @class Nobreak 强制内容不换行
+ */
+.Break{word-break:break-all;word-wrap:break-word;}
+.Nobreak{word-break:keep-all;word-wrap:normal;}
+
+/*
+ * 浮动定义
+ */
+.FL{float:left;}
+.FR{float:right;}
+
+/*
+ * 定义文本下划线
+ */
+.UnLine{text-decoration:underline;}
+.DisunLine{text-decoration:none;}
+
+/*
+ * 定位关系
+ */
+.absolute{position:absolute;}
+.relative{position:relative;}
+.fixed {position:fixed;}
+	
+/* @group 通用属性定义_@end */
+
+
+
+/* @group 隐藏元素_@Start */
+/* 通用容器 */
+.wrapper{
+	clear: both;
+	overflow: hidden;
+}
+
+/*
+ * 隐藏元素
+ * @class o-hidden
+ * @desc 当元素内容内容超出元素height 或 width 时，隐藏之
+ */
+.o-hidden{overflow:hidden;}
+/*
+ * 隐藏元素
+ * @class invisible
+ * @desc	visibility可以隐藏元素，但是还是会在布局中占位
+ */
+.invisible{visibility:hidden;}
+
+/*
+ * 从页面布局上隐藏元素
+ * @class hidden
+ * @desc	从布局上隐藏元素
+ */
+.hidden{display: none;}
+.block {display:block;}
+
+/* @group 隐藏元素_@end */
+
+/*
+ * 清理元素
+ * @class clear
+ * @desc	清理浮动元素,当浮动换行时后面元素不希望浮动，添加此属性，防止IE BUG
+ */
+.clear{
+	clear:both;
+	height:0px;
+	width:100%;
+	font-size:1px;
+	line-height:0px;
+	visibility:hidden;
+	overflow:hidden;
+}
+  
+/*   常用样式定义_@Start  */
+	
+/*
+ * 颜色功能定义
+ * @Pro 由小写C开头,表示color
+ * @desc 常用样式可更具一个项目的样式使用频率重新定义,扩展
+ */
+.cRed{color: #F00;}
+.cWhite{color: #FFF;}
+.cGreen{color:#0F0;}
+.cGray{color: #666;}
+.cBlue{ color: #00F;}
+.cblack{ color:#000;}
+
+
+.bRed {background:red;}
+.bBlack {background:black;}
+.bYellow {background:Yellow;}
+.bBlue {background:Blue;}
+.bGreen {background:Green;}
+.bWhite {background:#fff;}
+/*
+ * 定义字体样式
+ * @Pro 由大写字母F开头,表示FONT
+ * @desc 常用样式可更具一个项目的样式使用频率重新定义,扩展
+ */
+
+/*
+ *字体样式
+ */
+.FB{font-weight:bold;}
+.FN{ font-weight:normal;}
+.FI{font-style:italic;}
+
+/*   常用样式定义_@end   */
+
+
+/*
+ *  备注
+ */
+
+/*  在终极页面中调用该通用样式时,应该注意显示效果的不同,因为后台上传信息时编辑器里面样式并没有调用本默认样式表.
+ *
+ *  所以在编辑器中标签会有默认的属性,用户在添加信息时,这些信息都是附带默认样式的.
+ *  如果用我们在终极页面也调用本默认CSS文件的话,许多标签如:p,td,li......标签默认样式都被取消,因此显示效不同.
+ *
+ *  解决办法:
+ *	在终极页面显示内容区域还原这些标签的默认属性.
+ *
+ */
+ 
+/*
+ *  Copyright：本文件最终解释权归榴莲网络科技有限公司所有；
+ */

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/Globle.css"/>
+		<link rel="stylesheet" type="text/css" href="css/new_file.css"/>
+	</head>
+	<body>
+		<div class="banner">
+			<img src="img/img.jpg" />
+		</div>
+		<div class="content">
+			<ul>
+				<li>
+					<div class="con_left">
+						<span><img src="img/img.jpg"></span>
+					</div>
+					<div class="con_right">
+						<h4>凌度</h4>
+						<p>今天天气不错，适合出去喝杯咖啡。。。。</p>
+						<div class="con_box">
+						
+						</div>
+						<div class="operation">
+							<span>9</span>
+							<em>评论</em>
+							<b>13小时前</b>
+						</div>
+						<ol class="comments">
+							<!--<li>
+								<p><i>至尊宝</i>：<em>有内涵~~~</em></p>
+							</li>-->
+						</ol>
+						<div class="text_con">
+							<span>查看全部<b></b>条评论</span><em></em>
+						</div>
+					</div>
+				</li>
+				
+			</ul>
+		</div>
+		
+		
+		
+		
+	<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
+	<script src="js/new_file.js" type="text/javascript" charset="utf-8"></script>
+	 <script>
+        !(function(doc, win) {
+            var docEle = doc.documentElement,//获取html元素
+                event = "onorientationchange" in window ? "orientationchange" : "resize",//判断是屏幕旋转还是resize;
+                fn = function() {
+                    var width = docEle.clientWidth;
+                    width && (docEle.style.fontSize = 100  * (width / 320) + "px");//设置html的fontSize，随着event的改变而改变。
+                };
+            
+            win.addEventListener(event, fn, false);
+            doc.addEventListener("DOMContentLoaded", fn, false);
+        
+        }(document, window));
+    </script>
+	</body>
+</html>
