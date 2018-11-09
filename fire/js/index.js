@@ -73,12 +73,7 @@ $(function(){
 				particles[i] = new particle();
 			}
 		}
-
-
-    
-  requestAnimFrame(ParticleAnimation);
-
-}
-
-ParticleAnimation();
+  		requestAnimFrame(ParticleAnimation);
+	}
+	ParticleAnimation();
 })

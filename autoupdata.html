@@ -32,6 +32,13 @@
 			.auto footer{width: 100%;height: 0.9rem;line-height: 0.9rem;text-align: center;font-size: 0.24rem;color: #999;}
 			.zh{display: block;}
 			.cn{display: none;}
+			@media only screen and (max-width: 640px) {
+				.aw{width: 100%;}
+				.auto-main-txt{height: auto;}
+				.auto-main-img{height: 6rem;}
+				.auto header{height: auto;} 
+				.auto header h1, .auto header p{height: auto;line-height: 0.9rem;float: none;}
+			}
 		</style>
 	</head>
 	<body>
@@ -80,6 +87,24 @@
 				document.querySelector('#zh').className = '';
 				document.querySelector('#cn').className = 'sl';
 			}
+			
+			function init(doc, win) {
+			    var _root = doc.documentElement,
+			        resizeEvent = 'orientationchange' in win ? 'orientationchange' : 'resize',
+			        resizeCallback = function() {
+			            var clientWidth = _root.clientWidth;
+			            if(clientWidth > 640) {
+			            	_root.style.fontSize = '50px';
+			            } else {
+			            	_root.style.fontSize = parseInt(clientWidth / 7.5) + 'px';
+			            }
+			        };
+			    if (!doc.addEventListener) {return;}
+			    win.addEventListener(resizeEvent, resizeCallback, false);
+			    doc.addEventListener('DOMContentLoaded', resizeCallback, false);
+			}
+			init(document, window);
+			window.PointerEvent = undefined;
 		</script>
 	</body>
 </html>
