@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta name="renderer" content="webkit">
+	    <meta name="google" content="notranslate">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	    <meta http-equiv="pragma" content="no-cache" />
+	    <meta name="description" content="Fill in the api and upload the required structured data. The program is automatically uploaded.">
+	    <meta name="keywords" content="auto input, upload data, data collection">
+	    <meta name="format-detection" content="telephone=no" />
+	    <link rel="shortcut icon" href="./common/img/elup.png" type="image/x-icon">
+		<title>Automatically upload data</title>
+		<style type="text/css">
+			html,body{position: relative;width: 100%;height: 100%;background-color: #FeFeFe;font-size: 50px;}
+			html,body,header,footer,ul,li,div,p,a,img,section,aside,h1,h2{padding: 0;margin: 0;box-sizing: border-box;-webkit-box-sizing: border-box;}
+			.auto{position: relative;width: 100%;max-width: 1200px;margin: auto;}
+			.auto header{position: relative;width: 100%;height: 2rem;overflow: hidden;font-size: 0;clear: both;border-top: 2px solid #1296db;}
+			.auto header h1{float: left;height: 2rem;line-height: 2rem;font-size: 0.6rem;color: #333;padding-left: 0.3rem;}
+			.auto header p{float: right;height: 2rem;line-height: 2rem;font-size: 0.28rem;color: #1296db;}
+			.auto header p span{padding: 0 0.3rem;cursor: pointer;transition: all .5s ease;-moz-transition: all .5s ease;}
+			.sl{color: #3385FF;}
+			.auto-main{position: relative;font-size: 0;overflow: hidden;clear: both;}
+			.auto-main-txt{height: 5rem;padding: 0.3rem;float: left;font-size: 0.32rem;line-height: 0.6rem;color: #333;margin-top: 0.3rem;overflow: hidden;transition: all .5s ease;-moz-transition: all .5s ease;}
+			.auto-main-img{position: relative;height: 5rem;padding: 0.3rem;float: left;overflow: hidden;margin-top: 0.3rem;}
+			.auto-main-img img{position: absolute;top: 0;left: 0;bottom: 0;right: 0;margin: auto;width: 75%;height: auto;}
+			.aw{width: 50%;}
+			.hr{position: relative;clear: both;font-size: 0;box-shadow: 0px 1px 1px #ccc;-webkit-box-shadow: 0px 1px 1px #ccc;margin-top: 0.3rem;}
+			.hr .hr-one{width: 100%;height: 1px;background-color: #fff;}
+			.hr .hr-two{width: 100%;height: 1px;background-color: #bbb;}
+			.auto footer{width: 100%;height: 0.9rem;line-height: 0.9rem;text-align: center;font-size: 0.24rem;color: #999;}
+			.zh{display: block;}
+			.cn{display: none;}
+		</style>
+	</head>
+	<body>
+		<section class="auto">
+			<header>
+				<h1>Automatically upload data</h1>
+				<p><span class="sl" id="zh">English</span><span id="cn">中文(简体)</span></p>
+			</header>
+			<section class="auto-main">
+				<aside class="auto-main-txt aw zh">Click on the plugin icon and see the configuration panel.Enter your receiving api address. Enter the strictly formatted json data. Send a data collection request. It's that simple</aside>
+				<aside class="auto-main-txt aw cn">点击插件图标，可以看到操作面板，输入你需要接收数据的api地址，输入需要发送的数据结构，只支持JSON数据，并且只支持POST请求，点击采集按钮。数据采集就是如此简单！</aside>
+				<aside class="auto-main-img aw"><img src="./common/img/eg1.png" title="eg1" alt="step1"/></aside>
+				<aside class="auto-main-txt aw zh">The api that sends the request must use the full path, based on the HTTP or HTTPS protocol, otherwise the data cannot be sent.</aside>
+				<aside class="auto-main-txt aw cn">发送请求的api必须使用全路径，基于HTTP或者HTTPS协议，否则无法发送数据。</aside>
+				<aside class="auto-main-img aw"><img src="./common/img/eg2.png" title="eg2" alt="step2"/></aside>
+				<aside class="auto-main-txt aw zh">The data structure that needs to be sent must be in JSON format. If there are additional constants, use the key-value pairs of the string. If you need to collect the data list from the page as an object, the key name of the data object, and the css of the collection object. The selector acts as a key to form the acquisition object. Currently only supports 2D data structures, and will increase multidimensional data in the future.</aside>
+				<aside class="auto-main-txt aw cn">需要发送的数据结构必须是JSON格式的，如果有附加常量，就使用字符串的键值对，如果需要从页面采集数据列表以对象的方式进行构建，数据对象的键名，及采集对象的css选择器作为键值，组成采集对象。目前只支持二维数据结构，以后会增加多维数据。</aside>
+				<aside class="auto-main-img aw"><img src="./common/img/eg3.png" title="eg3" alt="step3"/></aside>
+				<aside class="auto-main-txt aw zh">Click the capture button to complete the acquisition. All the data is only the original data of the page, and the logic that needs to be processed twice needs to be implemented on the business server. Very simple</aside>
+				<aside class="auto-main-txt aw cn">点击采集按钮，完成采集。所有的数据只是页面的原生数据，需要进行二次加工的逻辑需要在业务服务端实现。很简单吧？</aside>
+				<aside class="auto-main-img aw"><img src="./common/img/eg4.png" title="eg4" alt="step4"/></aside>
+			</section>
+			<div class="hr"><div class="hr-one"></div><div class="hr-two"></div></div>
+			<footer>
+				<span>Development By lps8888888@gmail.com</span>
+			</footer>
+		</section>
+		<script type="text/javascript">
+			document.querySelector('#zh').onclick = function(){
+				var z = document.querySelectorAll('.zh');
+				var c = document.querySelectorAll('.cn');
+				for (var i = 0; i < z.length; i++) {
+					z[i].style.display = 'block';
+					c[i].style.display = 'none';
+				}
+				document.querySelector('#zh').className = 'sl';
+				document.querySelector('#cn').className = '';
+			}
+			document.querySelector('#cn').onclick = function(){
+				var z = document.querySelectorAll('.zh');
+				var c = document.querySelectorAll('.cn');
+				for (var i = 0; i < z.length; i++) {
+					c[i].style.display = 'block';
+					z[i].style.display = 'none';
+				}
+				document.querySelector('#zh').className = '';
+				document.querySelector('#cn').className = 'sl';
+			}
+		</script>
+	</body>
+</html>
