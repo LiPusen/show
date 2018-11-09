@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta name="renderer" content="webkit">
+	    <meta name="google" content="notranslate">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	    <meta http-equiv="pragma" content="no-cache" />
+	    <meta name="description" content="设置自动化执行时间或者延迟执行，利用程序快速点击，快人一秒.">
+	    <meta name="keywords" content="自动点击，程序化点击">
+	    <meta name="format-detection" content="telephone=no" />
+	    <link rel="shortcut icon" href="./common/img/click.png" type="image/x-icon">
+		<title>AutoClick</title>
+		<style type="text/css">
+			html,body{position: relative;width: 100%;height: 100%;background-color: #FeFeFe;font-size: 50px;}
+			html,body,header,footer,ul,li,div,p,a,img,section,aside,h1,h2{padding: 0;margin: 0;box-sizing: border-box;-webkit-box-sizing: border-box;}
+			.auto{position: relative;width: 100%;max-width: 1200px;margin: auto;}
+			.auto header{position: relative;width: 100%;height: 2rem;overflow: hidden;font-size: 0;clear: both;border-top: 2px solid #888;}
+			.auto header h1{float: left;height: 2rem;line-height: 2rem;font-size: 0.6rem;color: #333;padding-left: 0.3rem;}
+			.auto-main{position: relative;width: 100%;padding: 0.9rem 0.3rem;}
+			.auto-main-img{position: relative;height: 8rem;overflow: hidden;}
+			.auto-main-img img{position: absolute;top: 0;left: 0;bottom: 0;right: 0;margin: auto;width: 75%;height: auto;}
+			.hr{position: relative;clear: both;font-size: 0;box-shadow: 0px 1px 1px #ccc;-webkit-box-shadow: 0px 1px 1px #ccc;margin-top: 0.3rem;}
+			.hr .hr-one{width: 100%;height: 1px;background-color: #fff;}
+			.hr .hr-two{width: 100%;height: 1px;background-color: #bbb;}
+			.auto footer{width: 100%;height: 0.9rem;line-height: 0.9rem;text-align: center;font-size: 0.24rem;color: #999;}
+			@media only screen and (max-width: 640px) {
+				.auto header{height: auto;}
+				.auto-main-img{height: 6rem;} 
+			}
+		</style>
+	</head>
+	<body>
+		<section class="auto">
+			<header>
+				<h1>AutoClick 程序化点击</h1>
+			</header>
+			<section class="auto-main">
+				<aside class="auto-main-img"><img src="common/img/click.gif" title="操作示例" alt="操作示例"/></aside>
+			</section>
+			<div class="hr"><div class="hr-one"></div><div class="hr-two"></div></div>
+			<footer>
+				<span>Development By lps8888888@gmail.com</span>
+			</footer>
+		</section>
+		<script type="text/javascript">
+			function init(doc, win) {
+			    var _root = doc.documentElement,
+			        resizeEvent = 'orientationchange' in win ? 'orientationchange' : 'resize',
+			        resizeCallback = function() {
+			            var clientWidth = _root.clientWidth;
+			            if(clientWidth > 640) {
+			            	_root.style.fontSize = '50px';
+			            } else {
+			            	_root.style.fontSize = parseInt(clientWidth / 7.5) + 'px';
+			            }
+			        };
+			    if (!doc.addEventListener) {return;}
+			    win.addEventListener(resizeEvent, resizeCallback, false);
+			    doc.addEventListener('DOMContentLoaded', resizeCallback, false);
+			}
+			init(document, window);
+			window.PointerEvent = undefined;
+		</script>
+	</body>
+</html>
