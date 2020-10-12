@@ -7,6 +7,7 @@
     <style>
         html, body {margin: 0;padding: 0;font-family: "华文细黑";}
     </style>
+    <script src="./common/js/fabric.min.js"></script>
     <script>
         setInterval(function() {
             window.location.reload(true)
@@ -14,6 +15,16 @@
     </script>
 </head>
 <body>
-    <div style="color: red;font-size: 14px;font-weight: 100;">我是细细的汉字</div>
+    <canvas id="c"></canvas>
+    <script>
+        var canvas = new fabric.StaticCanvas("c")
+        var txt = new fabric.IText("复杂的字体", {
+            fontWeight: "lighter",
+            fontSize: 20,
+            fontFamily: "Courier",
+            fill: 'red',
+        })
+        canvas.add(txt)
+    </script>
 </body>
 </html>
